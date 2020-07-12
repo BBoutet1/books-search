@@ -60,9 +60,7 @@ function Search() {
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  function handleSave(event) {
-    event.preventDefault();
-    let id = event.target.id
+  function handleSave(id) {
      let book = books.filter(x => x._id === id);
     book = book[0];
     console.log(book)
@@ -103,8 +101,8 @@ function Search() {
                       <strong>
                         {book.volumeInfo.title}, by {book.volumeInfo.authors}
                       </strong>
-                           <SaveBtn onClick={() => {
-                      handleSave();
+                           <SaveBtn id={book._id} onClick={() => {
+                      handleSave(book._id);
                       }} />
                   </ListItem>
                 ))}
