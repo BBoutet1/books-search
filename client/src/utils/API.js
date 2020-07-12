@@ -20,6 +20,6 @@ export default {
     //Search books in Google Books
     getGoogleBooks: function(title) {
         console.log("TITLE:", title);
-        return axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title.title}&key=`);
+        return axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title.title}&key=AIzaSyBlNu63G4MaNjNSJQEKOGgx8zhnfDIPY1c`);
     }
 };

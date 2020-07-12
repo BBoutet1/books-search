@@ -5,7 +5,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import DeleteBtn from "../../components/DeleteBtn";
-// import SaveBtn from "../../components/SaveBtn";
+import SaveBtn from "../../components/SaveBtn";
 
 function Search() {
   // Setting our component's initial state
