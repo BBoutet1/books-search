@@ -60,18 +60,22 @@ function Search() {
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  function handleFormSubmit(event) {
+  function handleSave(event) {
     event.preventDefault();
+    let id = event.target.id
+     let book = books.filter(x => x._id === id);
+    book = book[0];
+    console.log(book)
     if (formObject) {
       API.saveBook({
-        title: formObject.title,
-        author: formObject.author,
-        synopsis: formObject.synopsis
+        title: book.volumeInfo.title,
+        authors: book.volumeInfo.authors[0],
+        synopsis: book.volumeInfo.description,
+        image: book.volumeInfo.imageLinks.thumbnail,
+        link: book.volumeInfo.previewLink
       })
         .then(() => setFormObject({
           title: "",
-          author: "",
-          synopsis: ""
         }))
         .then(() => loadBooks())
         .catch(err => console.log(err));
@@ -89,14 +93,7 @@ function Search() {
                 placeholder="Enter your book title"
                 value={formObject.title}
               />
-      
-              <FormBtn
-                disabled={!(formObject.title)}
-                onClick={handleFormSubmit}
-              >
-            Submit
-              </FormBtn>
-                  <Row>
+             <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
           {books.length ? (
@@ -107,7 +104,7 @@ function Search() {
                         {book.volumeInfo.title}, by {book.volumeInfo.authors}
                       </strong>
                            <SaveBtn onClick={() => {
-                      handleFormSubmit(book._id);
+                      handleSave();
                       }} />
                   </ListItem>
                 ))}
