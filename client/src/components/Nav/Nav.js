@@ -5,7 +5,7 @@ function Nav() {
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <ul class="navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="/books">Google Books</a>
+      <a class="nav-link" href="/">Google Books</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="search">Search</a>

@@ -67,7 +67,8 @@ function Books() {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>(React) Google Books Search</h1>
+              <h4>Search for and Save Books of Interest</h4>
             </Jumbotron>
             <form>
               <Input
