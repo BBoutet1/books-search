@@ -12,8 +12,9 @@ function Search() {
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({
     title: "",
-    // author: "",
-    // synopsis: ""
+    author: "",
+    synopsis: "",
+    id:""
   })
 
 
@@ -61,7 +62,7 @@ function Search() {
   // Then reload books from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.title && formObject.author) {
+    if (formObject) {
       API.saveBook({
         title: formObject.title,
         author: formObject.author,
@@ -82,7 +83,7 @@ function Search() {
             <Jumbotron/>
             <form style={{marginRight:30, marginLeft:30}}>
               <label>Search Book</label>
-              <Input
+             <Input
                 onChange={handleInputChange}
                 name="title"
                 placeholder="Enter your book title"
@@ -93,8 +94,29 @@ function Search() {
                 disabled={!(formObject.title)}
                 onClick={handleFormSubmit}
               >
-                Submit Book
+            Submit
               </FormBtn>
+                  <Row>
+          <Col size="md 12 s-12">
+          <h3>Results</h3>
+          {books.length ? (
+            <List>
+                {books.map(book => (
+                  <ListItem key={book._id}>
+                      <strong>
+                        {book.volumeInfo.title}, by {book.volumeInfo.authors}
+                      </strong>
+                           <SaveBtn onClick={() => {
+                      handleFormSubmit(book._id);
+                      }} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h4 style={{ color: "red", fontStyle: "italic" }}>No Results to Display</h4>
+            )}
+          </Col>
+        </Row>
         </form>
       </Container>
     );
