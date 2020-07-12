@@ -3,16 +3,32 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-import { Container } from "../../components/Grid";
+import { Col, Row, Container } from "../../components/Grid";
+import DeleteBtn from "../../components/DeleteBtn";
+// import SaveBtn from "../../components/SaveBtn";
 
 function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({
     title: "",
-    author: "",
-    synopsis: ""
+    // author: "",
+    // synopsis: ""
   })
+
+
+    API.getGoogleBooks({
+      title: formObject.title
+    })
+    .then(res => {
+      console.log(res);
+      if (res.data.status === "error") {
+        throw new Error(res.data.message);
+      }
+      setBooks(res.data.items);
+
+    })
+        .catch(err => console.log(err));
 
   // Load all books and store them with setBooks
   useEffect(() => {
@@ -79,7 +95,7 @@ function Search() {
               >
                 Submit Book
               </FormBtn>
-            </form>
+        </form>
       </Container>
     );
   }
