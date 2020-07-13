@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input} from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
-import DeleteBtn from "../../components/DeleteBtn";
 import SaveBtn from "../../components/SaveBtn";
 
 function Search() {
@@ -16,7 +15,6 @@ function Search() {
     synopsis: "",
     id:""
   })
-
 
     API.getGoogleBooks({
       title: formObject.title
@@ -45,12 +43,7 @@ function Search() {
       .catch(err => console.log(err));
   };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then(res => loadBooks())
-      .catch(err => console.log(err));
-  }
+
 
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {

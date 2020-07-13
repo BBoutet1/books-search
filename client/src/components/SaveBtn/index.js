@@ -8,7 +8,6 @@ function SaveBtn(props) {
     <button
       className="btn btn-outline-dark float-right"
       {...props}
-      role="button"
       tabIndex="0"
     >
       <i className="icon-save"></i>
