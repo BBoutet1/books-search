@@ -83,7 +83,7 @@ function Search() {
           <h3>Results</h3>
           {(books.length && formObject.title!=='') ? (
             <List>
-                {books.map(book => (
+                {books.slice(0, 15).map(book => (
                   <ListItem key={book._id}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} style={{width:75, height:100, marginRight:10}} alt=""></img>
                         <a href={book.volumeInfo.previewLink}>
