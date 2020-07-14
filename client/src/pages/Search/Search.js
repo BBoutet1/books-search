@@ -10,6 +10,7 @@ function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({})
+  const [apiReq, setApiReq] = useState({loaded:false})
     API.getGoogleBooks({
       title: formObject.title
     })
@@ -19,6 +20,7 @@ function Search() {
         throw new Error(res.data.message);
       }
       setBooks(res.data.items);
+      setApiReq({loaded:true})
 
     })
         .catch(err => console.log(err));
@@ -81,7 +83,7 @@ function Search() {
              <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-          {(books.length && formObject.title!=='') ? (
+          {(books.length && apiReq.loaded) ? (
             <List>
                 {books.slice(0, 15).map(book => (
                   <ListItem key={book._id}>
