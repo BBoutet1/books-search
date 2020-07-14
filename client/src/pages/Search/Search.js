@@ -65,7 +65,7 @@ function Search() {
     if (formObject) {
       API.saveBook({
         title: book.volumeInfo.title,
-        authors: book.volumeInfo.authors[0],
+        author: book.volumeInfo.authors[0],
         synopsis: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks.thumbnail,
         link: book.volumeInfo.previewLink
