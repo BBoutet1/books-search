@@ -9,7 +9,7 @@ import SaveBtn from "../../components/SaveBtn";
 function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
-  const [formObject, setFormObject] = useState({})
+  const [formObject, setFormObject] = useState({title:""})
   const [apiReq, setApiReq] = useState({loaded:false})
     API.getGoogleBooks({
       title: formObject.title
@@ -44,7 +44,8 @@ function Search() {
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setFormObject({...formObject, [name]: value})
+    if (event.target.value){setFormObject({...formObject, [name]: value})}
+    
   };
 
   // When the form is submitted, use the API.saveBook method to save the book data
@@ -83,7 +84,7 @@ function Search() {
              <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-          {(books.length && apiReq.loaded) ? (
+          {(books.length && apiReq.loaded && formObject.title!=="") ? (
             <List>
                 {books.slice(0, 15).map(book => (
                   <ListItem key={book._id}>
