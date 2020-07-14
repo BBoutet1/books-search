@@ -10,23 +10,7 @@ function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({title:""})
-    API.getGoogleBooks({
-      title: formObject.title
-    })
-    .then(res => {
-      console.log(res);
-      if (res.data.status === "error") {
-        throw new Error(res.data.message);
-      }
-      setBooks(res.data.items);
-
-    })
-        .catch(err => console.log(err));
-
-  // Load all books and store them with setBooks
-  useEffect(() => {
-    loadBooks()
-  }, [])
+ 
 
   // Loads all books and sets them to books
   function loadBooks() {
@@ -51,7 +35,7 @@ function Search() {
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    API.getSearchedBooks({
+     API.getGoogleBooks({
       title: formObject.title
     })
     .then(res => {
@@ -63,6 +47,11 @@ function Search() {
 
     })
         .catch(err => console.log(err));
+
+  // Load all books and store them with setBooks
+  useEffect(() => {
+    loadBooks()
+  }, [])
   };
 
 
