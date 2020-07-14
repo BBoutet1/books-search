@@ -10,7 +10,6 @@ function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({title:""})
-  const [apiReq, setApiReq] = useState({loaded:false})
     API.getGoogleBooks({
       title: formObject.title
     })
@@ -20,7 +19,6 @@ function Search() {
         throw new Error(res.data.message);
       }
       setBooks(res.data.items);
-      setApiReq({loaded:true})
 
     })
         .catch(err => console.log(err));
@@ -84,11 +82,11 @@ function Search() {
              <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-          {(books.length && apiReq.loaded && formObject.title!=="") ? (
+          {(books.length) ? (
             <List>
                 {books.slice(0, 15).map(book => (
                   <ListItem key={book._id}>
-                    <img src={book.volumeInfo.imageLinks.thumbnail} style={{width:75, height:100, marginRight:10}} alt=""></img>
+                   {(book.volumeInfo.imageLinks.thumbnail)&& (<img src={book.volumeInfo.imageLinks.thumbnail} style={{width:75, height:100, marginRight:10}} alt=""></img>)}
                         <a href={book.volumeInfo.previewLink}>
                         <strong>
                           {book.volumeInfo.title} by {book.volumeInfo.authors}
