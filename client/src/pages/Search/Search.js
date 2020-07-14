@@ -81,7 +81,7 @@ function Search() {
              <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-          {books.length ? (
+          {(books.length && formObject.title!=='') ? (
             <List>
                 {books.map(book => (
                   <ListItem key={book._id}>
