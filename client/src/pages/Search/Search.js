@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
-import { Input} from "../../components/Form";
+import { Input, FormBtn} from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import SaveBtn from "../../components/SaveBtn";
 
@@ -78,8 +78,9 @@ function Search() {
                 name="title"
                 placeholder="Enter your book title"
                 value={formObject.title}
-              />
-             <Row>
+          />
+             </form>
+          <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
           {(books.length) ? (
@@ -92,7 +93,7 @@ function Search() {
                           {book.volumeInfo.title} by {book.volumeInfo.authors}
                         </strong> 
                       </a>
-                           <SaveBtn id={book._id} onClick={() => {
+                      <SaveBtn id={book._id} onClick={() => {
                       handleSave(book._id);
                     }} />
                     <p>{book.volumeInfo.description}</p>
@@ -104,7 +105,6 @@ function Search() {
             )}
           </Col>
         </Row>
-        </form>
       </Container>
     );
   }
