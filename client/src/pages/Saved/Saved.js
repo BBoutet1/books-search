@@ -9,7 +9,6 @@ function Saved() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
  
-
   // Load all books and store them with setBooks
   useEffect(() => {
     loadBooks()
@@ -39,12 +38,14 @@ function Saved() {
                 {books.map(book => {
                   return (
                     <ListItem key={book._id}>
-                      <a href={"/books/" + book._id}>
+                      <img src={book.image} style={{width:75, height:100, marginRight:10}} alt=""></img>
+                      <a href={book.link}>
                         <strong>
                           {book.title} by {book.author}
-                        </strong>
+                        </strong> 
                       </a>
                       <DeleteBtn onClick={() => deleteBook(book._id)} />
+                      <p>{book.synopsis}</p>
                     </ListItem>
                   );
                 })}

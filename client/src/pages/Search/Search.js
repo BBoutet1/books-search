@@ -9,13 +9,7 @@ import SaveBtn from "../../components/SaveBtn";
 function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
-  const [formObject, setFormObject] = useState({
-    title: "",
-    author: "",
-    synopsis: "",
-    id:""
-  })
-
+  const [formObject, setFormObject] = useState({})
     API.getGoogleBooks({
       title: formObject.title
     })
@@ -91,12 +85,16 @@ function Search() {
             <List>
                 {books.map(book => (
                   <ListItem key={book._id}>
-                      <strong>
-                        {book.volumeInfo.title}, by {book.volumeInfo.authors}
-                      </strong>
+                    <img src={book.volumeInfo.imageLinks.thumbnail} style={{width:75, height:100, marginRight:10}} alt=""></img>
+                        <a href={book.volumeInfo.previewLink}>
+                        <strong>
+                          {book.volumeInfo.title} by {book.volumeInfo.authors}
+                        </strong> 
+                      </a>
                            <SaveBtn id={book._id} onClick={() => {
                       handleSave(book._id);
-                      }} />
+                    }} />
+                    <p>{book.volumeInfo.description}</p>
                   </ListItem>
                 ))}
               </List>

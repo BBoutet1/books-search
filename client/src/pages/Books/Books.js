@@ -9,9 +9,6 @@ function Books() {
     return (
       <Container>
         <Jumbotron />
-
-
-
         <div className="row justify-content-around">
             <Link to="/search" className="col-4 row justify-content-md-center">
               <FormBtn
