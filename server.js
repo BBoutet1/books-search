@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +17,10 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/reactgooglebooks"
+    process.env.MONGODB_URI || "mongodb://localhost/reactgooglebooks", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
 );
 
 // Start the API server
