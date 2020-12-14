@@ -11,6 +11,10 @@ function Search() {
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({title:""})
  
+  // Load all books and store them with setBooks
+  useEffect(() => {
+    loadBooks()
+  }, [])
 
   // Loads all books and sets them to books
   function loadBooks() {
@@ -21,13 +25,10 @@ function Search() {
       .catch(err => console.log(err));
   };
 
-
-
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
     if (event.target.value){setFormObject({...formObject, [name]: value})}
-    
   };
 
  // When the form is submitted, use the API.saveBook method to save the book data
@@ -39,7 +40,6 @@ function Search() {
       title: formObject.title
     })
     .then(res => {
-      console.log(res);
       if (res.data.status === "error") {
         throw new Error(res.data.message);
       }
@@ -47,14 +47,7 @@ function Search() {
 
     })
         .catch(err => console.log(err));
-
-  // Load all books and store them with setBooks
-  useEffect(() => {
-    loadBooks()
-  }, [])
   };
-
-
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
@@ -77,7 +70,7 @@ function Search() {
         .catch(err => console.log(err));
     }
   };
-
+console.log(books)
     return (
       <Container>
             <Jumbotron/>
@@ -96,11 +89,12 @@ function Search() {
           <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-          {(books.length && formObject.title!=="") ? (
+          {(books.length >= 1 && formObject.title !=="") ? (
             <List>
                 {books.slice(0, 15).map(book => (
                   <ListItem key={book._id}>
-                   {(book.volumeInfo.imageLinks.thumbnail)&& (<img src={book.volumeInfo.imageLinks.thumbnail} style={{width:75, height:100, marginRight:10}} alt=""></img>)}
+                    {(book.volumeInfo.imageLinks)
+                      && (<img src={book.volumeInfo.imageLinks.thumbnail} style={{ width: 75, height: 100, marginRight: 10 }} alt=""></img>)}
                         <a href={book.volumeInfo.previewLink}>
                         <strong>
                           {book.volumeInfo.title} by {book.volumeInfo.authors}
