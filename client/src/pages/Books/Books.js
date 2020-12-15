@@ -21,11 +21,9 @@ function Books() {
                 Saved Books
               </FormBtn>
             </Link>
-         </div>
-         
+         </div>  
       </Container>
     );
   }
-
 
 export default Books;

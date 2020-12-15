@@ -10,20 +10,6 @@ function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({title:""})
- 
-  // Load all books and store them with setBooks
-  useEffect(() => {
-    loadBooks()
-  }, [])
-
-  // Loads all books and sets them to books
-  function loadBooks() {
-    API.getBooks()
-      .then(res => 
-        setBooks(res.data)
-      )
-      .catch(err => console.log(err));
-  };
 
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
@@ -35,7 +21,6 @@ function Search() {
   // Then reload books from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-
      API.getGoogleBooks({
       title: formObject.title
     })
@@ -44,8 +29,7 @@ function Search() {
         throw new Error(res.data.message);
       }
       setBooks(res.data.items);
-
-    })
+    }) 
         .catch(err => console.log(err));
   };
 
@@ -70,7 +54,6 @@ function Search() {
         .catch(err => console.log(err));
     }
   };
-console.log(books)
     return (
       <Container>
             <Jumbotron/>

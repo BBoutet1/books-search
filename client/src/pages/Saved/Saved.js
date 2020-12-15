@@ -29,7 +29,7 @@ function Saved() {
       .then(res => loadBooks())
       .catch(err => console.log(err));
   }
-
+console.log(books)
     return (
       <Container>
             <Jumbotron/>
