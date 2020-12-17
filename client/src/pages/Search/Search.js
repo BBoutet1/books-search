@@ -36,10 +36,10 @@ function Search() {
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   function handleSave(id) {
-     let book = books.filter(x => x._id === id);
-    book = book[0];
+    console.log(id)
+    let book = books.filter(x => x.id === id);
     console.log(book)
-    if (formObject) {
+    if (book.volumeInfo) {
       API.saveBook({
         title: book.volumeInfo.title,
         author: book.volumeInfo.authors[0],
@@ -75,7 +75,7 @@ function Search() {
           {(books.length >= 1 && formObject.title !=="") ? (
             <List>
                 {books.slice(0, 15).map(book => (
-                  <ListItem key={book._id}>
+                  <ListItem key={book.id}>
                     {(book.volumeInfo.imageLinks)
                       && (<img src={book.volumeInfo.imageLinks.thumbnail} style={{ width: 75, height: 100, marginRight: 10 }} alt=""></img>)}
                         <a href={book.volumeInfo.previewLink}>
@@ -83,8 +83,8 @@ function Search() {
                           {book.volumeInfo.title} by {book.volumeInfo.authors}
                         </strong> 
                       </a>
-                      <SaveBtn id={book._id} onClick={() => {
-                      handleSave(book._id);
+                      <SaveBtn id={book.id} onClick={() => {
+                      handleSave(book.id);
                     }} />
                     <p>{book.volumeInfo.description}</p>
                   </ListItem>
