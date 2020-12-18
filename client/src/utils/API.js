@@ -14,8 +14,8 @@ export default {
         return axios.delete("/api/books/" + id);
     },
     // Saves a searched book to the database
-    saveBook: function(bookData) {
-        return axios.post("/api/books", bookData);
+    saveBook: async function(bookData) {
+        return await axios.post("/api/books", bookData);
     },
     //Search books in Google Books
     getGoogleBooks: function(title) {

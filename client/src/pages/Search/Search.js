@@ -36,17 +36,19 @@ function Search() {
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   function handleSave(id) {
-    console.log(id)
     let book = books.filter(x => x.id === id);
     console.log(book)
-    if (book.volumeInfo) {
-      API.saveBook({
-        title: book.volumeInfo.title,
-        author: book.volumeInfo.authors[0],
-        synopsis: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks.thumbnail,
-        link: book.volumeInfo.previewLink
-      })
+    let savedBook = book[0];
+    console.log(savedBook)
+    const bookData = {
+        title: savedBook.volumeInfo.title,
+        author: savedBook.volumeInfo.authors[0],
+        synopsis: savedBook.volumeInfo.description,
+        image: savedBook.volumeInfo.imageLinks.thumbnail,
+        link: savedBook.volumeInfo.previewLink
+     }
+    if (bookData) {
+      API.saveBook(bookData)
         .then(() => setFormObject({
           title: "",
         }))
