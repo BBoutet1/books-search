@@ -37,9 +37,7 @@ function Search() {
   // Then reload books from the database
   function handleSave(id) {
     let book = books.filter(x => x.id === id);
-    console.log(book)
     let savedBook = book[0];
-    console.log(savedBook)
     const bookData = {
         title: savedBook.volumeInfo.title,
         author: savedBook.volumeInfo.authors[0],

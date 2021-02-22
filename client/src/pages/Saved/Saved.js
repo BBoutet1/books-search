@@ -18,8 +18,7 @@ function Saved() {
   function loadBooks() {
     API.getBooks()
       .then(res => {
-        console.log(res)
-        setBooks(res)
+        setBooks(res.data)
       }
       )
       .catch(err => console.log(err));
@@ -28,13 +27,13 @@ function Saved() {
   // Deletes a book from the database with a given id, then reloads books from the db
   function deleteBook(id) {
     API.deleteBook(id)
-      .then(res => loadBooks())
+      .then(() => loadBooks())
       .catch(err => console.log(err));
   }
-console.log(books)
     return (
       <Container>
-            <Jumbotron/>
+        <Jumbotron />
+        <div>Array length {books.length}</div>
             {books.length ? (
               <List>
                 {books.map(book => {
@@ -58,6 +57,5 @@ console.log(books)
       </Container>
     );
   }
-
 
 export default Saved;
