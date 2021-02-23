@@ -72,7 +72,9 @@ function Search() {
           <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-          {(books.length >= 1 && formObject.title !=="") ? (
+            {(books.length >= 1 && formObject.title !== "") ? (
+          <>
+            <h4 style={{ color: "red", fontStyle: "italic" }}>You have {books.length} results</h4>
             <List>
                 {books.slice(0, 15).map(book => (
                   <ListItem key={book.id}>
@@ -90,6 +92,7 @@ function Search() {
                   </ListItem>
                 ))}
               </List>
+              </>
             ) : (
               <h4 style={{ color: "red", fontStyle: "italic" }}>No Results to Display</h4>
             )}

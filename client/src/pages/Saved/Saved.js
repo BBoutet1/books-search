@@ -33,8 +33,9 @@ function Saved() {
     return (
       <Container>
         <Jumbotron />
-        <div>Array length {books.length}</div>
-            {books.length ? (
+        {books.length ? (
+          <>
+            <h4 style={{ color: "red", fontStyle: "italic" }}>You saved {books.length} books</h4>
               <List>
                 {books.map(book => {
                   return (
@@ -50,7 +51,8 @@ function Saved() {
                     </ListItem>
                   );
                 })}
-              </List>
+            </List>
+            </>
             ) : (
               <h3>No Results to Display</h3>
             )}
