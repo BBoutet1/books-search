@@ -14,7 +14,7 @@ function Search() {
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
-    if (event.target.value){setFormObject({...formObject, [name]: value})}
+    setFormObject({...formObject, [name]: value})
   };
 
  // When the form is submitted, use the API.saveBook method to save the book data
@@ -47,10 +47,6 @@ function Search() {
      }
     if (bookData) {
       API.saveBook(bookData)
-        .then(() => setFormObject({
-          title: "",
-        }))
-        .then(() => loadBooks())
         .catch(err => console.log(err));
     }
   };
@@ -72,7 +68,7 @@ function Search() {
           <Row>
           <Col size="md 12 s-12">
           <h3>Results</h3>
-            {(books.length >= 1 && formObject.title !== "") ? (
+            {books.length ? (
           <>
             <h4 style={{ color: "red", fontStyle: "italic" }}>You have {books.length} results</h4>
             <List>
