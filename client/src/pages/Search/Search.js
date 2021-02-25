@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
@@ -17,8 +17,7 @@ function Search() {
     setFormObject({...formObject, [name]: value})
   };
 
- // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+ // When the form is submitted, use the API.getGoogleBooks method to search book by title in Google Books API
   function handleFormSubmit(event) {
     event.preventDefault();
      API.getGoogleBooks({
@@ -34,7 +33,6 @@ function Search() {
   };
 
   // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
   function handleSave(id) {
     let book = books.filter(x => x.id === id);
     let savedBook = book[0];

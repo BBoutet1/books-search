@@ -9,12 +9,12 @@ function Saved() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
  
-  // Load all books and store them with setBooks
+  // Load all books and store them with setBooks when the page is loaded
   useEffect(() => {
     loadBooks()
   }, [])
 
-  // Loads all books and sets them to books
+  // Get all saved books  JSON from our API
   function loadBooks() {
     API.getBooks()
       .then(res => {
